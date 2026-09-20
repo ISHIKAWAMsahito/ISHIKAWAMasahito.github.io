@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja" data-lang="ja">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,7 +7,7 @@
 <meta name="description" content="Masahito Ishikawa — Crafting logic. Refining experience. Indie developer building practical Flutter tools and production-grade AI RAG systems." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg: #030712;
@@ -22,6 +22,7 @@
     --accent: #3ee6c4;
     --accent-2: #4ea1ff;
     --mono: 'Geist Mono', 'SF Mono', Menlo, monospace;
+    --sans: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
   }
 
   * { box-sizing: border-box; }
@@ -31,7 +32,7 @@
     margin:0;
     background: var(--bg);
     color: var(--text);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--sans);
     font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -42,6 +43,12 @@
   }
 
   a { color: inherit; text-decoration: none; }
+
+  /* ---------- 言語切り替えロジック (CSS) ---------- */
+  html[data-lang="ja"] [data-lang-content="en"],
+  html[data-lang="en"] [data-lang-content="ja"] {
+    display: none !important;
+  }
 
   .wrap{
     max-width: 1040px;
@@ -79,9 +86,42 @@
     background: var(--accent);
     box-shadow: 0 0 8px var(--accent);
   }
+  .header-actions{
+    display:flex;
+    align-items:center;
+    gap: 20px;
+  }
+
+  /* ---------- 言語切り替えスイッチ ---------- */
+  .lang-btn{
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all .2s ease;
+  }
+  .lang-btn:hover{
+    border-color: var(--accent);
+  }
+  .lang-btn .active{
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .lang-btn .divider{
+    color: var(--text-faint);
+    font-size: 10px;
+  }
+
   .social{
     display:flex;
-    gap: 18px;
+    gap: 16px;
   }
   .social a{
     color: var(--text-dim);
@@ -94,7 +134,7 @@
 
   /* ---------- Hero ---------- */
   .hero{
-    padding: 140px 0 110px;
+    padding: 130px 0 100px;
     border-bottom: 1px solid var(--border);
   }
   .hero .eyebrow{
@@ -115,12 +155,12 @@
     display:inline-block;
   }
   .hero h1{
-    font-size: clamp(2.4rem, 6vw, 4.4rem);
-    line-height: 1.06;
+    font-size: clamp(2.3rem, 5.6vw, 4.2rem);
+    line-height: 1.15;
     font-weight: 800;
-    letter-spacing: -0.03em;
-    margin: 0 0 28px;
-    max-width: 16ch;
+    letter-spacing: -0.02em;
+    margin: 0 0 26px;
+    max-width: 18ch;
   }
   .hero h1 .accent{
     background: linear-gradient(90deg, var(--accent), var(--accent-2));
@@ -129,10 +169,11 @@
     color: transparent;
   }
   .hero p{
-    font-size: 1.08rem;
+    font-size: 1.05rem;
     color: var(--text-dim);
-    max-width: 52ch;
+    max-width: 54ch;
     margin: 0;
+    line-height: 1.8;
   }
   .hero .tags{
     display:flex;
@@ -151,16 +192,16 @@
   }
 
   /* ---------- Section shared ---------- */
-  section{ padding: 96px 0; border-bottom: 1px solid var(--border); }
+  section{ padding: 90px 0; border-bottom: 1px solid var(--border); }
   .section-head{
     display:flex;
     align-items:baseline;
     justify-content:space-between;
-    margin-bottom: 48px;
+    margin-bottom: 44px;
     gap: 16px;
   }
   .section-head h2{
-    font-size: 1.6rem;
+    font-size: 1.55rem;
     font-weight: 700;
     letter-spacing: -0.01em;
     margin: 0;
@@ -183,7 +224,7 @@
     background: linear-gradient(180deg, var(--surface), var(--surface-2));
     padding: 32px;
     display:grid;
-    grid-template-columns: 1fr 1.2fr;
+    grid-template-columns: 1fr 1.25fr;
     gap: 32px;
     transition: border-color .2s ease;
   }
@@ -193,20 +234,13 @@
     overflow: hidden;
     background: #0c1119;
     border: 1px solid var(--border);
-    min-height: 220px;
+    min-height: 230px;
     display:flex;
     align-items:center;
     justify-content:center;
     position:relative;
   }
   .card-media img{ width:100%; height:100%; object-fit:cover; display:block; }
-  .card-media .ph-label{
-    position:absolute;
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text-faint);
-    bottom: 10px; left: 12px;
-  }
   .card-body{ display:flex; flex-direction:column; }
   .card-kicker{
     font-family: var(--mono);
@@ -217,21 +251,22 @@
     margin-bottom: 10px;
   }
   .card-body h3{
-    font-size: 1.28rem;
+    font-size: 1.25rem;
     font-weight: 700;
-    margin: 0 0 14px;
+    margin: 0 0 12px;
     letter-spacing: -0.01em;
   }
   .card-body p{
     color: var(--text-dim);
-    font-size: 0.96rem;
+    font-size: 0.94rem;
     margin: 0 0 22px;
     flex-grow: 1;
+    line-height: 1.7;
   }
   .card-footer{
     display:flex;
     align-items:center;
-    gap: 14px;
+    gap: 12px;
     flex-wrap: wrap;
   }
   .btn{
@@ -258,6 +293,11 @@
     background: rgba(62,230,196,0.06);
     padding: 5px 10px;
     border-radius: 999px;
+  }
+  .badge.warning{
+    color: #f59e0b;
+    border-color: rgba(245,158,11,0.3);
+    background: rgba(245,158,11,0.06);
   }
 
   @media (max-width: 760px){
@@ -291,7 +331,7 @@
     color: var(--accent);
     white-space: nowrap;
   }
-  .log-text{ color: var(--text-dim); font-size: 0.95rem; }
+  .log-text{ color: var(--text-dim); font-size: 0.94rem; line-height: 1.6; }
   .log-text strong{ color: var(--text); font-weight: 600; }
 
   @media (max-width: 560px){
@@ -299,7 +339,7 @@
   }
 
   /* ---------- Footer ---------- */
-  footer{ padding: 56px 0; }
+  footer{ padding: 50px 0; }
   footer .wrap{
     display:flex;
     align-items:center;
@@ -336,22 +376,51 @@
 <header>
   <div class="wrap">
     <div class="logo"><span class="dot"></span>ISHIKAWA<span style="color:var(--text-faint)">.</span>Masahito</div>
-    <div class="social">
-      <a href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56 0-.27-.01-1.17-.02-2.13-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.67.8.56A10.51 10.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
-      </a>
-      <a href="https://x.com/" target="_blank" rel="noopener" aria-label="X (Twitter)">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.24 2H21.5l-7.3 8.34L22.8 22h-6.73l-5.27-6.89L4.7 22H1.44l7.8-8.92L1.2 2h6.9l4.76 6.3L18.24 2Zm-1.18 18.02h1.87L7.03 3.87H5.02l12.04 16.15Z"/></svg>
-      </a>
+    <div class="header-actions">
+      <!-- 言語切り替えトグル -->
+      <button id="lang-btn" class="lang-btn" aria-label="Toggle language">
+        <span id="opt-ja" class="active">JA</span>
+        <span class="divider">/</span>
+        <span id="opt-en">EN</span>
+      </button>
+
+      <div class="social">
+        <!-- GitHub -->
+        <a href="https://github.com/ISHIKAWAMsahito" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56 0-.27-.01-1.17-.02-2.13-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.67.8.56A10.51 10.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+        </a>
+        <!-- Qiita -->
+        <a href="https://qiita.com/ishikawamasahito3150" target="_blank" rel="noopener" aria-label="Qiita">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5h-2v-2h2v2zm0-4h-2V7h2v5.5z"/></svg>
+        </a>
+        <!-- X (Twitter) -->
+        <a href="https://x.com/ishikawa3150" target="_blank" rel="noopener" aria-label="X (Twitter)">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.24 2H21.5l-7.3 8.34L22.8 22h-6.73l-5.27-6.89L4.7 22H1.44l7.8-8.92L1.2 2h6.9l4.76 6.3L18.24 2Zm-1.18 18.02h1.87L7.03 3.87H5.02l12.04 16.15Z"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 </header>
 
 <section class="hero">
   <div class="wrap">
-    <p class="eyebrow">Indie Developer</p>
-    <h1>Code. Logs. <span class="accent">Improve.</span> Repeat.</h1>
-    <p>An indie developer building practical Flutter tools for professional workflows and production-grade AI RAG systems powered by FastAPI and Supabase — shipped, deployed, and continuously refined through real usage logs.</p>
+    <p class="eyebrow">
+      <span data-lang-content="ja">個人開発者</span>
+      <span data-lang-content="en">Indie Developer</span>
+    </p>
+
+    <!-- H1 -->
+    <h1 data-lang-content="ja">つくる。測る。<span class="accent">磨く。</span>繰り返す。</h1>
+    <h1 data-lang-content="en">Code. Logs. <span class="accent">Improve.</span> Repeat.</h1>
+
+    <!-- P -->
+    <p data-lang-content="ja">
+      実務に耐えうるFlutter製モバイルツールと、FastAPI・Supabaseで構築する本番運用水準のAI RAGシステムを開発する個人エンジニア。リリースして終わらせず、実際の利用ログを起点に改善サイクルを回し続けています。
+    </p>
+    <p data-lang-content="en">
+      An indie developer building practical Flutter tools for professional workflows and production-grade AI RAG systems powered by FastAPI and Supabase — shipped, deployed, and continuously refined through real usage logs.
+    </p>
+
     <div class="tags">
       <span class="tag">Flutter</span>
       <span class="tag">FastAPI</span>
@@ -365,39 +434,109 @@
 <section id="work">
   <div class="wrap">
     <div class="section-head">
-      <h2>Selected Work</h2>
-      <span class="index">01 — 02</span>
+      <h2>
+        <span data-lang-content="ja">開発実績</span>
+        <span data-lang-content="en">Selected Work</span>
+      </h2>
+      <span class="index">01 — 03</span>
     </div>
     <div class="projects">
 
+      <!-- Card 1: ストレスきろく (リリース済み) -->
       <div class="card">
         <div class="card-media">
-          <img src="assets/calculator.png" alt="Practical Calculator screenshot">
+          <img src="assets/stress_log_promo_X.png" alt="ストレスきろく プロモーション画像">
         </div>
         <div class="card-body">
-          <div class="card-kicker">Mobile · Flutter</div>
-          <h3>Practical Calculator for Accounting Exams</h3>
-          <p>A Casio-layout, tactile-feel calculator app built for bookkeeping and tax-accountant exam candidates and practicing accountants. Presented in a clean Bento-style interface, with a rapid iteration loop driven directly by user feedback.</p>
+          <div class="card-kicker">
+            <span data-lang-content="ja">モバイル · Flutter</span>
+            <span data-lang-content="en">Mobile · Flutter</span>
+          </div>
+
+          <h3 data-lang-content="ja">ストレスきろく</h3>
+          <h3 data-lang-content="en">Stress Log</h3>
+
+          <p data-lang-content="ja">
+            日々の気分や感情の波を直感的に記録・可視化できるメンタルケアアプリ。完全ローカル保存によるプライバシー保護と広告なしのミニマル設計を採用し、日々のセルフモニタリングをストレスフリーに継続できます。
+          </p>
+          <p data-lang-content="en">
+            A minimal mental self-care and emotion-tracking app to log and visualize stress levels with a single tap. Features complete local-only data storage for absolute privacy and zero ads for seamless daily monitoring.
+          </p>
+
           <div class="card-footer">
-            <a class="btn" href="#" target="_blank" rel="noopener">
+            <a class="btn" href="https://play.google.com/store/apps/details?id=com.ishikawa.stress_log" target="_blank" rel="noopener">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.6.32-1.15.84-1.44L14 8l-4.68 4.68L3 20.5Z"/><path d="M14 8l3.5-2 3.16 1.83a1.5 1.5 0 0 1 0 2.34L17.5 12 14 10l-1-1 1-1Z" opacity=".6"/><path d="M14 8 3 20.5 14.68 13.32 14 8Z" opacity=".8"/></svg>
               Google Play
             </a>
-            <span class="badge">Live on Play Store</span>
+            <span class="badge">
+              <span data-lang-content="ja">公開中</span>
+              <span data-lang-content="en">Live on Play Store</span>
+            </span>
           </div>
         </div>
       </div>
 
+      <!-- Card 2: 実務電卓 (クローズドテスト段階) -->
+      <div class="card">
+        <div class="card-media">
+          <img src="assets/calculator.png" alt="実務電卓 スクリーンショット">
+        </div>
+        <div class="card-body">
+          <div class="card-kicker">
+            <span data-lang-content="ja">モバイル · Flutter</span>
+            <span data-lang-content="en">Mobile · Flutter</span>
+          </div>
+
+          <h3 data-lang-content="ja">実務電卓</h3>
+          <h3 data-lang-content="en">Practical Calculator</h3>
+
+          <p data-lang-content="ja">
+            カシオ実機のキー配列と打鍵感を忠実に再現した簿記・税理士試験受験生向け電卓アプリ。実務で求められる確実なキーロールオーバー処理と、ユーザーコミュニティからのフィードバックに基づく即日パッチ配信を実施しています。
+          </p>
+          <p data-lang-content="en">
+            A Casio-layout, tactile-feel calculator app designed for accounting and tax exam candidates. Optimized for reliable key roll-over handling, undergoing rapid iteration and bug triage directly from tester feedback.
+          </p>
+
+          <div class="card-footer">
+            <a class="btn" href="https://x.com/ishikawa3150" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.24 2H21.5l-7.3 8.34L22.8 22h-6.73l-5.27-6.89L4.7 22H1.44l7.8-8.92L1.2 2h6.9l4.76 6.3L18.24 2Zm-1.18 18.02h1.87L7.03 3.87H5.02l12.04 16.15Z"/></svg>
+              <span data-lang-content="ja">テスター情報 (X)</span>
+              <span data-lang-content="en">Tester Info (X)</span>
+            </a>
+            <span class="badge warning">
+              <span data-lang-content="ja">クローズドテスト中</span>
+              <span data-lang-content="en">Closed Testing</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: RAG (大学試験運用) -->
       <div class="card">
         <div class="card-media">
           <img src="assets/chatbot.png" alt="Campus AI Concierge interface">
         </div>
         <div class="card-body">
-          <div class="card-kicker">Backend · RAG Infrastructure</div>
-          <h3>Campus AI Concierge System (RAG)</h3>
-          <p>An enterprise-grade RAG system built on FastAPI, Supabase (pgvector), and LangSmith, indexing thousands of pages of syllabi and academic regulations. Deployed and actively used at student help desks and open-campus events, with retrieval accuracy continuously tuned from real query logs.</p>
+          <div class="card-kicker">
+            <span data-lang-content="ja">バックエンド · RAG基盤</span>
+            <span data-lang-content="en">Backend · RAG Infrastructure</span>
+          </div>
+
+          <h3 data-lang-content="ja">AIチャットボットシステム (RAG)</h3>
+          <h3 data-lang-content="en">Campus AI Concierge System (RAG)</h3>
+
+          <p data-lang-content="ja">
+            FastAPI、Supabase (pgvector)、LangSmithで構築したRAGシステム。膨大な履修要覧や学内諸規程を高精度にインデックス化。OCや経済学科教員向けに試験運用を行い、実際の問い合わせログを元に検索、回答精度を継続的にチューニングしています。
+          </p>
+          <p data-lang-content="en">
+            An enterprise-grade RAG system built on FastAPI, Supabase (pgvector), and LangSmith, indexing thousands of pages of syllabi and academic regulations. Currently in pilot testing across campus events and support desks, continuously refining retrieval accuracy from real query logs.
+          </p>
+
           <div class="card-footer">
-            <span class="badge">Deployed in Univ.</span>
+            <span class="badge">
+              <span data-lang-content="ja">大学試験運用中</span>
+              <span data-lang-content="en">Pilot Testing in Univ.</span>
+            </span>
             <span class="badge">pgvector · LangSmith</span>
           </div>
         </div>
@@ -410,21 +549,37 @@
 <section id="log">
   <div class="wrap">
     <div class="section-head">
-      <h2><span class="log-title">~/log</span> &nbsp;Recent Improvements</h2>
-      <span class="index">updated weekly</span>
+      <h2>
+        <span class="log-title">~/log</span> &nbsp;
+        <span data-lang-content="ja">更新・改善履歴</span>
+        <span data-lang-content="en">Recent Improvements</span>
+      </h2>
+      <span class="index">
+        <span data-lang-content="ja">週次更新</span>
+        <span data-lang-content="en">updated weekly</span>
+      </span>
     </div>
     <ul class="log-list">
       <li class="log-item">
+        <span class="log-date">2026-09-15</span>
+        <span class="log-text">
+          <span data-lang-content="ja"><strong>実務電卓：クローズドテスト開始</strong>：キーロールオーバー不具合の即日ホットフィックス版を配信。</span>
+          <span data-lang-content="en"><strong>Practical Calculator: Closed Beta Launch</strong>: Hotfixed key roll-over issue based on initial tester feedback.</span>
+        </span>
+      </li>
+      <li class="log-item">
         <span class="log-date">2026-09-01</span>
-        <span class="log-text"><strong>Refined RAG chunking strategy</strong> based on August usage-window log analysis.</span>
+        <span class="log-text">
+          <span data-lang-content="ja"><strong>RAGのチャンキング戦略を最適化</strong>：直近の稼働ログから検索クエリの傾向を分析し精度改善。</span>
+          <span data-lang-content="en"><strong>Refined RAG chunking strategy</strong> based on August usage-window log analysis.</span>
+        </span>
       </li>
       <li class="log-item">
-        <span class="log-date">2026-08-15</span>
-        <span class="log-text"><strong>Fixed key roll-over issue</strong> in the calculator app on high-refresh-rate displays.</span>
-      </li>
-      <li class="log-item">
-        <span class="log-date">2026-08-01</span>
-        <span class="log-text"><strong>Initial site launch</strong> on GitHub Pages.</span>
+        <span class="log-date">2026-08-20</span>
+        <span class="log-text">
+          <span data-lang-content="ja"><strong>「ストレスきろく」Google Playにて正式リリース</strong>：完全ローカル保存・広告なしで提供開始。</span>
+          <span data-lang-content="en"><strong>Stress Log: Released on Google Play</strong>: Shipped with local-only storage and zero-ad architecture.</span>
+        </span>
       </li>
     </ul>
   </div>
@@ -433,12 +588,43 @@
 <footer>
   <div class="wrap">
     <p>© 2026 Masahito Ishikawa. All rights reserved.</p>
-    <a class="discord-link" href="#" target="_blank" rel="noopener">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.32 4.37a19.8 19.8 0 0 0-4.9-1.52.07.07 0 0 0-.08.04c-.21.38-.45.87-.61 1.26a18.3 18.3 0 0 0-5.48 0 12.6 12.6 0 0 0-.62-1.26.08.08 0 0 0-.08-.04c-1.7.29-3.35.8-4.9 1.52a.07.07 0 0 0-.03.03C.53 9.05-.32 13.58.1 18.05a.08.08 0 0 0 .03.06 19.9 19.9 0 0 0 6 3.03.08.08 0 0 0 .08-.03c.46-.63.87-1.3 1.23-2a.08.08 0 0 0-.04-.11 13 13 0 0 1-1.87-.9.08.08 0 0 1-.01-.13c.13-.09.25-.19.37-.29a.07.07 0 0 1 .08-.01c3.93 1.8 8.18 1.8 12.06 0a.07.07 0 0 1 .08.01c.12.1.24.2.37.29a.08.08 0 0 1-.01.13c-.6.35-1.22.65-1.87.9a.08.08 0 0 0-.04.11c.36.7.78 1.37 1.23 2a.08.08 0 0 0 .08.03 19.8 19.8 0 0 0 6.01-3.03.08.08 0 0 0 .03-.06c.5-5.18-.84-9.67-3.55-13.65a.06.06 0 0 0-.03-.03ZM8.02 15.33c-1.18 0-2.15-1.08-2.15-2.42 0-1.33.95-2.42 2.15-2.42 1.21 0 2.17 1.1 2.15 2.42 0 1.34-.95 2.42-2.15 2.42Zm7.97 0c-1.18 0-2.15-1.08-2.15-2.42 0-1.33.95-2.42 2.15-2.42 1.21 0 2.17 1.1 2.15 2.42 0 1.34-.94 2.42-2.15 2.42Z"/></svg>
-      Feedback on Discord
+    <a class="discord-link" href="https://x.com/ishikawa3150" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.24 2H21.5l-7.3 8.34L22.8 22h-6.73l-5.27-6.89L4.7 22H1.44l7.8-8.92L1.2 2h6.9l4.76 6.3L18.24 2Zm-1.18 18.02h1.87L7.03 3.87H5.02l12.04 16.15Z"/></svg>
+      <span data-lang-content="ja">連絡・DM (X)</span>
+      <span data-lang-content="en">Contact via X</span>
     </a>
   </div>
 </footer>
+
+<script>
+  // ---------- 言語切り替えスクリプト ----------
+  const langBtn = document.getElementById('lang-btn');
+  const optJa = document.getElementById('opt-ja');
+  const optEn = document.getElementById('opt-en');
+
+  function setLanguage(lang) {
+    document.documentElement.setAttribute('data-lang', lang);
+    document.documentElement.setAttribute('lang', lang);
+    localStorage.setItem('site_lang', lang);
+
+    if (lang === 'ja') {
+      optJa.classList.add('active');
+      optEn.classList.remove('active');
+    } else {
+      optEn.classList.add('active');
+      optJa.classList.remove('active');
+    }
+  }
+
+  // 初期言語の設定（ローカルストレージに保存がなければ日本語）
+  const currentLang = localStorage.getItem('site_lang') || 'ja';
+  setLanguage(currentLang);
+
+  langBtn.addEventListener('click', () => {
+    const active = document.documentElement.getAttribute('data-lang');
+    setLanguage(active === 'ja' ? 'en' : 'ja');
+  });
+</script>
 
 </body>
 </html>
