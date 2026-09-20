@@ -1,3 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja" data-lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Masahito Ishikawa — Indie Developer</title>
+<meta name="description" content="Masahito Ishikawa — Crafting logic. Refining experience. Indie developer building practical Flutter tools and production-grade AI RAG systems." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<!-- CSS読み込みリンク -->
+<link rel="stylesheet" href="style.css?v=2" />
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="logo"><span class="dot"></span>ISHIKAWA<span style="color:var(--text-faint)">.</span>Masahito</div>
+    <div class="header-actions">
+      <!-- 言語切り替えトグル -->
+      <button id="lang-btn" class="lang-btn" aria-label="Toggle language">
+        <span id="opt-ja" class="active">JA</span>
+        <span class="divider">/</span>
+        <span id="opt-en">EN</span>
+      </button>
+
+      <div class="social">
+        <!-- GitHub -->
+        <a href="https://github.com/ISHIKAWAMsahito" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56 0-.27-.01-1.17-.02-2.13-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .31.21.67.8.56A10.51 10.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+        </a>
+        <!-- Qiita -->
+        <a href="https://qiita.com/ishikawamasahito3150" target="_blank" rel="noopener" aria-label="Qiita">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5h-2v-2h2v2zm0-4h-2V7h2v5.5z"/></svg>
+        </a>
+        <!-- X (Twitter) -->
+        <a href="https://x.com/ishikawa3150" target="_blank" rel="noopener" aria-label="X (Twitter)">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.24 2H21.5l-7.3 8.34L22.8 22h-6.73l-5.27-6.89L4.7 22H1.44l7.8-8.92L1.2 2h6.9l4.76 6.3L18.24 2Zm-1.18 18.02h1.87L7.03 3.87H5.02l12.04 16.15Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">
+      <span data-lang-content="ja">個人開発者</span>
+      <span data-lang-content="en">Indie Developer</span>
+    </p>
+
+    <!-- H1 -->
+    <h1 data-lang-content="ja">実用アプリと<br><span class="accent">AI RAG基盤</span>をつくる。</h1>
+    <h1 data-lang-content="en">Building Mobile Tools & <br><span class="accent">AI RAG Systems.</span></h1>
+
+    <!-- P -->
+    <p data-lang-content="ja">
+      モバイルツールと、FastAPI・Supabaseで構築するAI RAGシステムを試行的に研究開発しています。実際の利用ログを起点に改善サイクルを回し続けています。
+    </p>
+    <p data-lang-content="en">
+      An indie developer building practical Flutter tools for professional workflows and production-grade AI RAG systems powered by FastAPI and Supabase — shipped, deployed, and continuously refined through real usage logs.
+    </p>
+
+    <div class="tags">
+      <span class="tag">Flutter</span>
+      <span class="tag">FastAPI</span>
+      <span class="tag">Supabase / pgvector</span>
+      <span class="tag">LangSmith</span>
+      <span class="tag">RAG Systems</span>
+    </div>
+  </div>
+</section>
+
 <section id="work">
   <div class="wrap">
     <div class="section-head">
@@ -151,3 +224,46 @@
     </ul>
   </div>
 </section>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Masahito Ishikawa. All rights reserved.</p>
+    <a class="discord-link" href="https://x.com/ishikawa3150" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.24 2H21.5l-7.3 8.34L22.8 22h-6.73l-5.27-6.89L4.7 22H1.44l7.8-8.92L1.2 2h6.9l4.76 6.3L18.24 2Zm-1.18 18.02h1.87L7.03 3.87H5.02l12.04 16.15Z"/></svg>
+      <span data-lang-content="ja">連絡・DM (X)</span>
+      <span data-lang-content="en">Contact via X</span>
+    </a>
+  </div>
+</footer>
+
+<script>
+  // ---------- 言語切り替えスクリプト ----------
+  const langBtn = document.getElementById('lang-btn');
+  const optJa = document.getElementById('opt-ja');
+  const optEn = document.getElementById('opt-en');
+
+  function setLanguage(lang) {
+    document.documentElement.setAttribute('data-lang', lang);
+    document.documentElement.setAttribute('lang', lang);
+    localStorage.setItem('site_lang', lang);
+
+    if (lang === 'ja') {
+      optJa.classList.add('active');
+      optEn.classList.remove('active');
+    } else {
+      optEn.classList.add('active');
+      optJa.classList.remove('active');
+    }
+  }
+
+  const currentLang = localStorage.getItem('site_lang') || 'ja';
+  setLanguage(currentLang);
+
+  langBtn.addEventListener('click', () => {
+    const active = document.documentElement.getAttribute('data-lang');
+    setLanguage(active === 'ja' ? 'en' : 'ja');
+  });
+</script>
+
+</body>
+</html>
